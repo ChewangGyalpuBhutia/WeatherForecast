@@ -7,13 +7,14 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [location, setLocation] = useState({ lat: 27.3417, lon: 88.7553 })
     const [temperatureUnit, setTemperatureUnit] = useState("C");
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
     const handleTemperatureUnitChange = (unit) => {
         setTemperatureUnit(unit);
     };
 
     const fetchGeoLocation = async () => {
-        const url = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},in&appid=adadb12d324891adc35281114a29fdb8`
+        const url = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},in&appid=${apiKey}`
         try {
             let data = await fetch(url)
             let locationData = await data.json()
@@ -27,7 +28,7 @@ const Weather = () => {
     }
 
     const fetchData = async (latitude, longitude) => {
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=adadb12d324891adc35281114a29fdb8`
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
         try {
             let data = await fetch(url);
             let weatherdata = await data.json();

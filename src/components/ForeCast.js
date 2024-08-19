@@ -6,7 +6,8 @@ const Forecast = ({ lat, lon }) => {
     const [selectedDay, setSelectedDay] = useState(null);
 
     const fetchForeCast = async (latitude, longitude) => {
-        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=adadb12d324891adc35281114a29fdb8`
+        const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
         try {
             let data = await fetch(url);
             let forecastdata = await data.json();
